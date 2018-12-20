@@ -17,7 +17,7 @@ public interface TbTokenInfoDAO {
    * -删除过期的TokenInfo
    * 
    * @return
-   * @throws Exception
+   * @throws Exception 处理发生错误
    */
   int deleteTokenInfos() throws Exception;
 
@@ -26,7 +26,7 @@ public interface TbTokenInfoDAO {
    *
    * @param tokenInfo
    * @return
-   * @throws Exception
+   * @throws Exception 处理发生错误
    */
   TbTokenInfo queryImageCodeByToken(TbTokenInfo tokenInfo) throws Exception;
 
@@ -35,7 +35,7 @@ public interface TbTokenInfoDAO {
    *
    * @param tokenInfo
    * @return
-   * @throws Exception
+   * @throws Exception 处理发生错误
    */
   int addImageCode(TbTokenInfo tokenInfo) throws Exception;
 
@@ -44,7 +44,7 @@ public interface TbTokenInfoDAO {
    *
    * @param tokenInfo
    * @return
-   * @throws Exception
+   * @throws Exception 处理发生错误
    */
   int updateImageCode(TbTokenInfo tokenInfo) throws Exception;
 
@@ -53,44 +53,12 @@ public interface TbTokenInfoDAO {
    *
    * @param tokenInfo
    * @return
-   * @throws Exception
+   * @throws Exception 处理发生错误
    */
   int deleteImageCode(TbTokenInfo tokenInfo) throws Exception;
 
-  /**
-   * -查询用户是否存在
-   *
-   * @param tokenInfo
-   * @return
-   * @throws Exception
-   */
-  TbTokenInfo queryUserByToken(TbTokenInfo tokenInfo) throws Exception;
 
-  /**
-   * -添加用户
-   *
-   * @param tokenInfo
-   * @return
-   * @throws Exception
-   */
-  int addUser(TbTokenInfo tokenInfo) throws Exception;
 
-  /**
-   * -更新用户
-   *
-   * @param tokenInfo
-   * @return
-   * @throws Exception
-   */
-  int updateUser(TbTokenInfo tokenInfo) throws Exception;
 
-  /**
-   * -删除用户
-   *
-   * @param tokenInfo
-   * @return
-   * @throws Exception
-   */
-  int deleteUser(TbTokenInfo tokenInfo) throws Exception;
 
 }

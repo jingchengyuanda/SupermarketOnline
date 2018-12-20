@@ -1,0 +1,57 @@
+<div ng-controller="SubTypeManageCtrl">
+  <div class="text-right bg-info">
+    <span class="btn btn-danger" ng-click="toAdd()">添加</span>
+    <span class="btn btn-primary" ng-click="query()">查询</span>
+  </div>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th>所属分类</th>
+        <th>分类名称</th>
+        <th>分类描述</th>
+        <th>是否启用</th>
+        <th>最后修改时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tr ng-repeat="d in list" ng-class="{true:'bg-info',false:'bg-danger'}[$index%2==0]">
+      <td><span ng-bind="$index+1"></span></td>
+      <td><span ng-bind="showTypeName(d.tid)"></span></td>
+      <td><span ng-bind="d.subName"></span></td>
+      <td><span ng-bind="d.subInfo"></span></td>
+      <td>
+        <span ng-if="d.isEnable=='y'" class="text-primary">启用中</span>
+        <span ng-if="d.isEnable=='n'" class="text-danger">禁用中</span>
+      </td>
+      <td>
+        <span show-time="{{d.lastupdate}}" format="y-M-d h:m:s"></span>
+      </td>
+      <td>
+          <span ng-if="d.isEnable=='y'" class="btn btn-primary" ng-click="changeEnable(d,'n')">启用中</span>
+          <span ng-if="d.isEnable=='n'" class="btn btn-danger" ng-click="changeEnable(d,'y')">禁用中</span>
+          <span class="btn btn-danger">修改</span>
+      </td>
+    </tr>
+  </table>
+
+  <nav class="text-center">
+      <ul class="pagination">
+        <li><a href="javascript:void(0);" ng-click="ToPage(1);">首页</a></li>
+        <li>
+          <a href="javascript:void(0);" ng-click="ToPage(page.pageNumber-1);">上页</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">总数：{{ page.total }}||当前页：{{ page.pageNumber }}||总页数：{{
+            page.pageCount
+            }}</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" ng-click="ToPage(page.pageNumber+1);">下一页</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" ng-click="ToPage(page.pageCount);">尾页</a>
+        </li>
+      </ul>
+    </nav>
+</div>

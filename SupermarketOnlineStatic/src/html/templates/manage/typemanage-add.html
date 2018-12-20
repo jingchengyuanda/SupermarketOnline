@@ -1,0 +1,10 @@
+<div ng-controller="TypeManageAddCtrl">
+  <div class="form-group">
+   <input type="text" class="form-control"ng-model="formdata.typeName" placeholder="请输入分类名称">
+   <input type="text" class="form-control"ng-model="formdata.typeInfo" placeholder="请输入分类描述">
+  </div>
+  <div class="text-right">
+     <span class="btn btn-danger btn-sm" ng-click="add();">添加</span>
+     <span class="btn btn-danger btn-sm" ng-click="close();">取消</span>
+  </div>
+</div>
