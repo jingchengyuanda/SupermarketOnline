@@ -34,6 +34,13 @@ public interface TbSubTypeDAO {
    */
   TbSubType  queryByTidSubName(TbSubType tbSubType)throws Exception;
   /**
+   * -按照主键查询
+   * @param tbSubType
+   * @return
+   * @throws Exception
+   */
+  TbSubType  queryByKey(TbSubType tbSubType)throws Exception;
+  /**
    * 
    * @param tbSubType
    * @return

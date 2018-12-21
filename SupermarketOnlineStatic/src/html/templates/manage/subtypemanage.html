@@ -30,7 +30,7 @@
       <td>
           <span ng-if="d.isEnable=='y'" class="btn btn-primary" ng-click="changeEnable(d,'n')">启用中</span>
           <span ng-if="d.isEnable=='n'" class="btn btn-danger" ng-click="changeEnable(d,'y')">禁用中</span>
-          <span class="btn btn-danger">修改</span>
+          <span class="btn btn-danger" ng-click="toUpdate(d)">修改</span>
       </td>
     </tr>
   </table>
@@ -39,7 +39,7 @@
       <ul class="pagination">
         <li><a href="javascript:void(0);" ng-click="ToPage(1);">首页</a></li>
         <li>
-          <a href="javascript:void(0);" ng-click="ToPage(page.pageNumber-1);">上页</a>
+          <a href="javascript:void(0);" ng-click="ToPage(page.pageNumber-1);">上一页</a>
         </li>
         <li>
           <a href="javascript:void(0);">总数：{{ page.total }}||当前页：{{ page.pageNumber }}||总页数：{{

@@ -47,9 +47,7 @@ public class SubTypeServiceImpl implements SubTypeService {
     return message;
   }
 
-  @Override
-  public JsonMessage add(TbSubTypeModel model) throws Exception {
-    TbSubType subType = model.getTbSubType();
+  private JsonMessage checkSubType(TbSubType subType) throws Exception {
     if (subType.getTid() == null || subType.getTid() < 1) {
       return JsonMessage.getFail("必须选择类型");
     }
@@ -59,15 +57,44 @@ public class SubTypeServiceImpl implements SubTypeService {
     if (MyUtils.isEmpty(subType.getSubInfo())) {
       return JsonMessage.getFail("描述必须填写");
     }
+
+    return null;
+  }
+
+  @Override
+  public JsonMessage add(TbSubTypeModel model) throws Exception {
+    TbSubType subType = model.getTbSubType();
+    // 必填校验=======================
+    JsonMessage check = checkSubType(subType);
+    if (check != null) {
+      return check;
+    }
+    // 名称冲突检测==============================
     if (tbSubTypeDAO.queryByTidSubName(subType) != null) {
       return JsonMessage.getFail("类型已经存在");
     }
-    int result = tbSubTypeDAO.add(model.getTbSubType());
+    int result = tbSubTypeDAO.add(subType);
     return result == 1 ? JsonMessage.getSuccess("添加成功") : JsonMessage.getFail("添加失败");
   }
 
   @Override
   public JsonMessage update(TbSubTypeModel model) throws Exception {
+    TbSubType subType = model.getTbSubType();
+    // 必填校验=======================
+    JsonMessage check = checkSubType(subType);
+    if (check != null) {
+      return check;
+    }
+    TbSubType checksub = tbSubTypeDAO.queryByKey(subType);
+    if (checksub == null) {
+      return JsonMessage.getFail("类型不存在");
+    } // 名称冲突检测==================
+    TbSubType name = tbSubTypeDAO.queryByTidSubName(subType);
+    if (name != null && !subType.getStid().equals(name.getStid())) {
+      // 修改的情况
+      return JsonMessage.getFail("类型已经存在");
+    }
+
     int result = tbSubTypeDAO.update(model.getTbSubType());
     return result == 1 ? JsonMessage.getSuccess("修改成功") : JsonMessage.getFail("修改失败");
   }

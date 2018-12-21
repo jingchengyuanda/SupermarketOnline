@@ -24,7 +24,7 @@
       DialogService.hideCustom();
     };
     $scope.add = function () {
-      DialogService.showWait('添加数据中，请稍后.....')
+      DialogService.showWait('添加数据中，请稍后.....');
       DataService.send('/subtype/add', {
         TbSubType: $scope.formdata
       }, function (data) {

@@ -87,5 +87,14 @@
         });
       });
     };
+    //转到修改
+    $scope.toUpdate = function (subtype) {
+      DialogService.showCustom('templates/manage/subtypemanage-update.html', {
+        types: $scope.types,
+        type: subtype
+      }, function () {
+        $scope.query();
+      });
+    };
   }
 })();
