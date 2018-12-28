@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
+import cn.jingchengyuanda.supermarketonline.dao.TbLogsDAO;
 import cn.jingchengyuanda.supermarketonline.dao.TbSubTypeDAO;
+import cn.jingchengyuanda.supermarketonline.entity.TbLogs;
 import cn.jingchengyuanda.supermarketonline.entity.TbSubType;
 import cn.jingchengyuanda.supermarketonline.entity.TbType;
 import cn.jingchengyuanda.supermarketonline.model.TbSubTypeModel;
@@ -30,6 +32,8 @@ public class SubTypeServiceImpl implements SubTypeService {
 
   @Autowired
   private TbSubTypeDAO tbSubTypeDAO;
+  @Autowired
+  private TbLogsDAO tbLogsDAO;
 
   @Override
   public JsonMessage queryAll(TbSubTypeModel model) throws Exception {
@@ -74,6 +78,16 @@ public class SubTypeServiceImpl implements SubTypeService {
       return JsonMessage.getFail("类型已经存在");
     }
     int result = tbSubTypeDAO.add(subType);
+    // 添加日志信息
+    TbLogs logs = new TbLogs();
+    // 操作员
+    logs.setOperator(model.getTbAdminUser().getAuid().toString());
+    // 类型
+    logs.setLogtype("subtypemanage");
+    // 信息
+    logs.setLog(String.format("添加了:%s", model.getTbSubType()));
+    tbLogsDAO.add(logs);
+    
     return result == 1 ? JsonMessage.getSuccess("添加成功") : JsonMessage.getFail("添加失败");
   }
 
@@ -94,8 +108,16 @@ public class SubTypeServiceImpl implements SubTypeService {
       // 修改的情况
       return JsonMessage.getFail("类型已经存在");
     }
-
     int result = tbSubTypeDAO.update(model.getTbSubType());
+    // 添加日志信息
+    TbLogs logs = new TbLogs();
+    // 操作员
+    logs.setOperator(model.getTbAdminUser().getAuid().toString());
+    // 类型
+    logs.setLogtype("subtypemanage");
+    // 信息
+    logs.setLog(String.format("修改了:%s", model.getTbSubType()));
+    tbLogsDAO.add(logs);
     return result == 1 ? JsonMessage.getSuccess("修改成功") : JsonMessage.getFail("修改失败");
   }
 
@@ -103,6 +125,14 @@ public class SubTypeServiceImpl implements SubTypeService {
   public JsonMessage enable(TbSubTypeModel model) throws Exception {
     model.getTbSubType().setIsEnable("y");
     int result = tbSubTypeDAO.updateIsEnable(model.getTbSubType());
+    TbLogs logs = new TbLogs();
+    // 操作员
+    logs.setOperator(model.getTbAdminUser().getAuid().toString());
+    // 类型
+    logs.setLogtype("subtypemanage");
+    // 信息
+    logs.setLog(String.format("启用了:%s", model.getTbSubType()));
+    tbLogsDAO.add(logs);
     return result == 1 ? JsonMessage.getSuccess("启用成功") : JsonMessage.getFail("启用失败");
 
   }
@@ -111,6 +141,15 @@ public class SubTypeServiceImpl implements SubTypeService {
   public JsonMessage disable(TbSubTypeModel model) throws Exception {
     model.getTbSubType().setIsEnable("n");
     int result = tbSubTypeDAO.updateIsEnable(model.getTbSubType());
+    // 添加日志信息
+    TbLogs logs = new TbLogs();
+    // 操作员
+    logs.setOperator(model.getTbAdminUser().getAuid().toString());
+    // 类型
+    logs.setLogtype("subtypemanage");
+    // 信息
+    logs.setLog(String.format("禁用了:%s", model.getTbSubType()));
+    tbLogsDAO.add(logs);
     return result == 1 ? JsonMessage.getSuccess("禁用成功") : JsonMessage.getFail("禁用失败");
 
   }

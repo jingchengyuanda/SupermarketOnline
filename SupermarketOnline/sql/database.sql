@@ -24,7 +24,7 @@ create table TbTokenInfo
   token varchar(50) comment '令牌值',
   infokey varchar(50) comment '令牌附加信息key',
   info varchar(2000) comment '令牌附加信息',
-  lastupdate timestamp comment '令牌环最后更新时间',
+  lastupdate timestamp comment '令牌环最后更新时间',username
   constraint pkTbTokenInfo primary key(token,infokey)
 );
 
@@ -32,7 +32,7 @@ create table TbTokenInfo
 create table TbAdminUser
 (
   auid int auto_increment primary key comment '主键',
-  username varchar(20) unique not null comment '用户名',
+   varchar(20) unique not null comment '用户名',
   password varchar(20) not null comment '密码',
   nickname varchar(50) not null comment '昵称',
   isEnable enum('y','n') default 'y' comment '是否启用，y:默认，启用，n:停用',
@@ -59,4 +59,15 @@ create table TbSubType
   isEnable enum('y','n') default 'y' comment '是否启用，y:默认，启用，n:停用',
   lastupdate timestamp default now() comment '最后更新时间',
   constraint upiqueTbSubType unique(tid,subName)
+);
+
+/*安全日志信息*/
+create table TbLogs
+(
+lid int auto_increment primary key comment '主键',
+operator varchar(50) comment'操作人员，可以为空',
+log varchar(1000) not null comment'操作信息',
+logtype varchar(50) not null comment'日志类型',
+lastupdate timestamp default now() comment'最后更新时间'
+
 );

@@ -1,0 +1,32 @@
+.manage-main .main{
+  display: flex;
+}
+
+.manage-main .ul {
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  background-color: rgb(240, 216, 227);
+
+}
+
+.manage-main .ul li span {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgb(152, 153, 155);
+  text-decoration: none;
+}
+
+/* 鼠标移动到选项上修改背景颜色 */
+.manage-main .ul li span:hover,.active {
+  background-color: #99CCCC;
+  color: #FFFFFF;
+}
+
+.manage-main .include{
+  flex-grow: 2;
+}
+

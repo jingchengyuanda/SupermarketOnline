@@ -1,0 +1,15 @@
+.manage-index{
+  display: flex;
+  justify-content: space-around;
+  height:100%;
+  align-items: center;
+}
+
+.manage-index .main{
+  width: 40%;
+  padding: 2rem;
+}
+
+.manage-index .input-group{
+  margin: 1rem;
+}

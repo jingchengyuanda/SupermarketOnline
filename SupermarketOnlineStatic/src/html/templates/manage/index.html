@@ -1,7 +1,25 @@
-<div class="index" ng-controller="IndexCtrl">
-    <div class="text-center">
-       <a href="#!/route/page/manage/typemanage">类型管理</a>
-       |
-       <a href="#!/route/page/manage/subtypemanage">小类管理</a>
+<div class="manage-index" ng-controller="ManageIndexCtrl">
+  <div class="main">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <div class="panel-title text-center"> 用户登录</div>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"> <i class="iconfont">&#xe60f;</i></span>
+            <input type="text" class="form-control" ng-model="formdata.username" placeholder="请输入用户名">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="iconfont">&#xe603;</i></span>
+            <input type="password" class="form-control" ng-model="formdata.password" placeholder="请输入密码">
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer text-center">
+        <span class="btn btn-info btn-sm" ng-click="login();"> <i class="iconfont">&#xe66b;</i> 登录</span>
+        <span class="btn btn-info btn-sm" ng-click="formdata={}"><i class="iconfont">&#xe633;</i>重填</span>
+      </div>
     </div>
   </div>
+</div>

@@ -31,7 +31,7 @@ public interface TbAdminUserDAO {
    * @return 查询用户登录信息 结果
    * @throws Exception 处理发生错误
    */
-  TbAdminUser queryTokenUser(TbAdminUser user)throws Exception;
+  TbAdminUser queryTokenUser(TbTokenInfo tbTokenInfo)throws Exception;
   /**
    * -添加登录用户信息
    * @param tbTokenInfo

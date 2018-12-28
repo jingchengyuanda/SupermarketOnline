@@ -2,7 +2,11 @@ package cn.jingchengyuanda.supermarketonline.model;
 
 import cn.jingchengyuanda.supermarketonline.base.BasePageModel;
 import cn.jingchengyuanda.supermarketonline.entity.TbType;
-
+/**
+ * 
+ * @author fengxiuyuan
+ *
+ */
 public class TbTypeModel extends BasePageModel {
 
   private static final long serialVersionUID = -4898566211010926315L;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 工具类mapper -->
+<mapper namespace="cn.jingchengyuanda.supermarketonline.dao.TbLogsDAO">
+  <select id="queryAll" resultType="TbLogs" parameterType="TbLogs">
+    select a.lid,a.operator,a.log,a.logtype,a.lastupdate,b.username'adminUser.username',b.nickname'adminUser.nickname' from TbLogs a
+    left join TbAdminUser b on a.operator=b.auid
+    order by lastupdate desc
+  </select>
+
+  <select id="queryAll_COUNT" resultType="int" parameterType="TbLogs">
+    select count(*) from TbLogs
+  </select>
+
+  <insert id="add" parameterType="TbLogs">
+    insert into TbLogs(operator,log,logtype) values(#{operator},#{log},#{logtype})
+  </insert>
+
+</mapper>
